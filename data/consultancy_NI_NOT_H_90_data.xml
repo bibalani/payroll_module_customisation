@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contrib_register_employees" model="hr.contribution.register">
+        <field name="name">Employees</field>
+        <field name="partner_id" eval="False"/>
+    </record>
+
+
+    <!-- Salary Structure -->
+    <record id="Normal-I-OT-Effective" model="hr.payroll.structure">
+        <field name="code">Normal-I-OT-Effective</field>
+        <field name="name">Normal-I-OT-Effective</field>
+        <!-- <field eval="[(4, ref('hr_rule_basic')),(4, ref('hr_rule_taxable')),(4,ref('hr_rule_net'))]" name="rule_ids"/> -->
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+    <record id="Normal-I-OT" model="hr.payroll.structure">
+        <field name="code">Normal-I-OT</field>
+        <field name="name">Normal-I-OT</field>
+        <!-- <field eval="[(4, ref('hr_rule_basic')),(4, ref('hr_rule_taxable')),(4,ref('hr_rule_net'))]" name="rule_ids"/> -->
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+    <record id="Consultancy-NI-NOT-H-90" model="hr.payroll.structure">
+        <field name="code">Consultancy-NI-NOT-H-90</field>
+        <field name="name">Consultancy-NI-NOT-H-90</field>
+        <!-- <field eval="[(4, ref('hr_rule_basic')),(4, ref('hr_rule_taxable')),(4,ref('hr_rule_net'))]" name="rule_ids"/> -->
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+    <record id="Consultancy-NI-NOT-H-140" model="hr.payroll.structure">
+        <field name="code">Consultancy-NI-NOT-H-140</field>
+        <field name="name">Consultancy-NI-NOT-H-140</field>
+        <!-- <field eval="[(4, ref('hr_rule_basic')),(4, ref('hr_rule_taxable')),(4,ref('hr_rule_net'))]" name="rule_ids"/> -->
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+    <record id="CommonRule" model="hr.payroll.structure">
+        <field name="code">Common Rule</field>
+        <field name="name">Common Rule</field>
+        <!-- <field eval="[(4, ref('hr_rule_basic')),(4, ref('hr_rule_taxable')),(4,ref('hr_rule_net'))]" name="rule_ids"/> -->
+        <field name="company_id" ref="base.main_company"/>
+    </record>
+
+
+
+
+
+    <record id="BASIC" model="hr.salary.rule.category">
+        <field name="name">Basic</field>
+        <field name="code">BASIC</field>
+    </record>
+
+    <record id="ALW" model="hr.salary.rule.category">
+        <field name="name">Allowance</field>
+        <field name="code">ALW</field>
+    </record>
+
+    <record id="GROSS" model="hr.salary.rule.category">
+        <field name="name">Gross</field>
+        <field name="code">GROSS</field>
+    </record>
+    <record id="TaxGROSS" model="hr.salary.rule.category">
+        <field name="name">Tax Gross</field>
+        <field name="code">TaxGROSS</field>
+    </record>
+    <record id="TaxAllowance" model="hr.salary.rule.category">
+        <field name="name">Tax Allowance</field>
+        <field name="code">TaxAllowance</field>
+    </record>
+
+    <record id="DED" model="hr.salary.rule.category">
+        <field name="name">Deduction</field>
+        <field name="code">DED</field>
+    </record>
+
+    <record id="NET" model="hr.salary.rule.category">
+        <field name="name">Net</field>
+        <field name="code">NET</field>
+    </record>
+
+
+    <record id="Tax" model="hr.salary.rule.category">
+        <field name="name">Tax</field>
+        <field name="code">TAX</field>
+    </record>
+
+    <record id="INS" model="hr.salary.rule.category">
+        <field name="name">INS</field>
+        <field name="code">INS</field>
+    </record>
+
+    <record id="TaxGross" model="hr.salary.rule.category">
+        <field name="name">Tax Gross</field>
+        <field name="code">TG</field>
+    </record>
+    <record id="InsuranceGross" model="hr.salary.rule.category">
+        <field name="name">Insurance Gross</field>
+        <field name="code">INSG</field>
+    </record>
+
+    <record id="TaxableNET" model="hr.salary.rule.category">
+        <field name="name">Taxable Net</field>
+        <field name="code">TaxableNET</field>
+    </record>
+
+    <record id="NonTaxbleNET" model="hr.salary.rule.category">
+        <field name="name">Non Taxble Net</field>
+        <field name="code">NonTaxbleNET</field>
+    </record>
+
+    <record id="COMP" model="hr.salary.rule.category">
+        <field name="name">Company Contribution</field>
+        <field name="code">COMP</field>
+    </record>
+
+    <record id="IT-ALW" model="hr.salary.rule.category">
+        <field name="name">InsuranceTaxAllowance</field>
+        <field name="code">IT-ALW</field>
+    </record>
+
+    <record id="IT-DED" model="hr.salary.rule.category">
+        <field name="name">InsuranceTaxDeduction</field>
+        <field name="code">IT-DED</field>
+    </record>
+
+    <record id="IT-GROSS" model="hr.salary.rule.category">
+        <field name="name">InsuranceTaxGross</field>
+        <field name="code">IT-GROSS</field>
+    </record>
+
+    <record id="NOIT-ALW" model="hr.salary.rule.category">
+        <field name="name">NoInsuranceTaxAllowance</field>
+        <field name="code">NOIT-ALW</field>
+    </record>
+
+    <record id="NOIT-DED" model="hr.salary.rule.category">
+        <field name="name">NoInsuranceTaxDeduction</field>
+        <field name="code">NOIT-DED</field>
+    </record>
+
+    <record id="NOIT-GROSS" model="hr.salary.rule.category">
+        <field name="name">NoInsuranceTaxGross</field>
+        <field name="code">NOIT-GROSS</field>
+    </record>
+    <record id="INOT-ALW" model="hr.salary.rule.category">
+        <field name="name">InsuranceNoTaxAllowance</field>
+        <field name="code">INOT-ALW</field>
+    </record>
+
+    <record id="INOT-DED" model="hr.salary.rule.category">
+        <field name="name">InsuranceNoTaxDeduction</field>
+        <field name="code">INOT-DED</field>
+    </record>
+
+    <record id="INOT-GROSS" model="hr.salary.rule.category">
+        <field name="name">InsuranceNoTaxGross</field>
+        <field name="code">INOT-GROSS</field>
+    </record>
+
+    <record id="NOINOT-ALW" model="hr.salary.rule.category">
+        <field name="name">NoInsuranceNoTaxAllowance</field>
+        <field name="code">NOINOT-ALW</field>
+    </record>
+
+    <record id="NOINOT-DED" model="hr.salary.rule.category">
+        <field name="name">NoInsuranceNoTaxDeduction</field>
+        <field name="code">NOINOT-DED</field>
+    </record>
+
+    <record id="NOINOT-GROSS" model="hr.salary.rule.category">
+        <field name="name">NoInsuranceNoTaxGross</field>
+        <field name="code">NOINOT-GROSS</field>
+    </record>
+
+
+    <!-- Consultancy-NI-NOT-H-90 Rules -->
+
+    <record id="hr_rule_tax_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Tax</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="sequence" eval="302"/>
+        <field name="code">tax_Consultancy_NI_NOT_H_90</field>
+        <field name="category_id" ref="bi_hr_payroll.Tax"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+gross_value = tax_gross_Consultancy_NI_NOT_H_90
+
+step = contract.struct_id.tax_profile_id.step_ids
+
+tax = 0
+flag = False
+sorted_step =sorted(step, key= lambda x : x.low)
+for st in sorted_step:
+    if float(gross_value) &lt;= st.high:
+        ind = sorted_step.index(st)
+        for i in range(0, ind):
+            tax += (sorted_step[i].high - sorted_step[i].low) * sorted_step[i].rate
+        tax += (gross_value - sorted_step[ind].low) * sorted_step[ind].rate
+        flag = True
+        break
+if not flag:
+    ind = len(sorted_step) - 1
+    for i in range(0, ind):
+        tax += (sorted_step[i].high - sorted_step[i].low) * sorted_step[i].rate
+    tax += (gross_value - sorted_step[ind].low) * sorted_step[ind].rate
+result =  tax
+
+        </field>
+    </record>
+
+
+    
+    <record id="hr_rule_insurance_gross_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Isurance Gross</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">insurance_gross_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.InsuranceGross"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+OFFICIAL_MONTH_DAYS = 30
+contract_worked_days = 30
+OFFICIAL_MONTH_HOURS = 192
+INS_G = 0
+WG = contract.wage+contract.uninsured_wage + contract.job_allowance
+INS_JOB_ALW = contract.job_allowance
+for rule in contract.struct_id.rule_ids:
+    if rule.category_id.code in ("IT-ALW", "INOT-ALW", "IT-GROSS", "INOT-GROSS"):
+        INS_G += rule.amount_fix
+    elif rule.category_id.code in ("IT-DED", "INOT-DED"):
+        INS_G -= rule.amount_fix
+    else:
+        INS_G += 0
+if payslip.input_line_ids:
+    for piv in payslip.input_line_ids:
+        if piv.category_id.code in ("IT-ALW", "INOT-ALW"):
+            INS_G +=  piv.amount
+        elif piv.category_id.code in ("IT-DED", "INOT-DED"):
+            INS_G -= piv.amount
+        else:
+            INS_G += 0
+result = WG + INS_G
+        </field>
+    </record>
+    <record id="hr_rule_emplpyee_ins_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Employee Insurance</field>
+        <field name="sequence" eval="201"/>
+        <field name="code">emplpyee_ins_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.INS"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+MAX_INS_GROSS = contract.struct_id.insurance_profile_id.max_insurable_gross
+EMP_INS_RATE = contract.struct_id.insurance_profile_id.employee_rate
+INS_G_P = min(insurance_gross_Consultancy_NI_NOT_H_90, MAX_INS_GROSS )
+result = max( INS_G_P *EMP_INS_RATE, 0 )
+        </field>
+    </record>
+
+    <record id="hr_rule_employer_ins_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Employer Insurance</field>
+        <field name="sequence" eval="202"/>
+        <field name="code">employer_ins_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.INS"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+MAX_INS_GROSS = contract.struct_id.insurance_profile_id.max_insurable_gross
+EMP_INS_RATE = contract.struct_id.insurance_profile_id.employer_rate
+INS_G_P = min(insurance_gross_Consultancy_NI_NOT_H_90, MAX_INS_GROSS )
+result = max( INS_G_P *EMP_INS_RATE, 0 )
+        </field>
+    </record>
+
+    <record id="hr_rule_unemployment_ins_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Unemployment Insurance</field>
+        <field name="sequence" eval="203"/>
+        <field name="code">unemployment_ins_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.INS"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+MAX_INS_GROSS = contract.struct_id.insurance_profile_id.max_insurable_gross
+EMP_INS_RATE = contract.struct_id.insurance_profile_id.unemployment_rate
+INS_G_P = min(insurance_gross_Consultancy_NI_NOT_H_90, MAX_INS_GROSS )
+result = max( INS_G_P *EMP_INS_RATE, 0 )
+        </field>
+
+    </record>
+
+    <record id="hr_rule_gross_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Gross</field>
+        <field name="sequence" eval="100"/>
+        <field name="code">gross_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.GROSS"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+                <field name="amount_python_compute">
+working_hours = min(payslip.actual_working_hours, contract.struct_id.maximum_working_hours)                    
+wage_rate = (payslip.working_hours/contract.struct_id.maximum_working_hours)                    
+gross = 0
+if contract.struct_id.rule_ids:
+    for rule in contract.struct_id.rule_ids:
+        if rule.category_id.code in ("IT-ALW", "NOIT-ALW", "INOT-ALW", "NOINOT-ALW"):
+            gross += rule.amount_fix
+        elif rule.category_id.code in ("IT-DED", "NOIT-DED", "INOT-DED", "NOINOT-DED"):
+            gross -= rule.amount_fix
+else:
+    gross += 0
+
+if payslip.input_line_ids:
+    for piv in payslip.input_line_ids:
+        if piv.is_grossable:
+            if piv.category_id.code in ("IT-ALW", "NOIT-ALW", "INOT-ALW", "NOINOT-ALW"):
+                gross += piv.amount
+            elif piv.category_id.code in ("IT-DED", "NOIT-DED", "INOT-DED", "NOINOT-DED"):
+                gross -= 0
+        else:
+            gross += 0
+WG = contract.wage *1 + contract.uninsured_wage + contract.job_allowance
+
+result = gross + WG
+
+                </field>
+    </record>
+
+    <record id="hr_rule_tax_gross_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Tax Gross</field>
+        <field name="sequence" eval="301"/>
+        <field name="code">tax_gross_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.TaxGROSS"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+working_hours = min(payslip.actual_working_hours, contract.struct_id.maximum_working_hours)                    
+wage_rate = (payslip.working_hours/contract.struct_id.maximum_working_hours)            
+tax_gross = 0
+for rule in contract.struct_id.rule_ids:
+    if rule.category_id.code in ("IT-ALW", "NOIT-ALW", "IT-GROSS", "NOIT-GROSS"):
+        tax_gross += rule.amount_fix
+    elif rule.category_id.code in ("IT-DED", "NOIT-DED"):
+        tax_gross -= rule.amount_fix
+    else:
+        tax_gross += 0
+
+if payslip.input_line_ids:
+    for piv in payslip.input_line_ids:
+        if piv.category_id.code in ("IT-ALW", "NOIT-ALW", "IT-GROSS", "NOIT-GROSS"):
+            tax_gross += piv.amount
+        elif piv.category_id.code in ("IT-DED", "NOIT-DED"):
+            tax_gross -= piv.amount
+        else:
+            tax_gross += 0
+result = contract.wage *1 +  tax_gross - emplpyee_ins_Consultancy_NI_NOT_H_90
+        </field>
+    </record>
+
+    <record id="hr_rule_net_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Net Salary</field>
+        <field name="sequence" eval="500"/>
+        <field name="code">net_Consultancy_NI_NOT_H_90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.NET"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+net = gross_Consultancy_NI_NOT_H_90 - emplpyee_ins_Consultancy_NI_NOT_H_90 - tax_Consultancy_NI_NOT_H_90
+if payslip.input_line_ids:
+    for piv in payslip.input_line_ids:
+        if piv.is_grossable:
+            if piv.category_id.code in ("IT-ALW", "NOIT-ALW", "IT-GROSS", "NOIT-GROSS"):
+                net += 0
+            elif piv.category_id.code in ("IT-DED", "NOIT-DED", "INOT-DED", "NOINOT-DED"):
+                net -= piv.amount
+        else:
+            net += 0
+
+result = net
+        </field>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_mobile_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Mobile Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">mobile_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.NOINOT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">fix</field>
+        <field name="amount_select">fix</field>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_housing_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Housing Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">housing_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.INOT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+working_hours = min(payslip.actual_working_hours, contract.struct_id.maximum_working_hours)                    
+wage_rate = (payslip.working_hours/contract.struct_id.maximum_working_hours)
+result = wage_rate *  6500000          
+            </field>
+    </record>
+
+
+    <record id="hr_rule_food_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Food Coupon Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">food_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.IT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+working_hours = min(payslip.actual_working_hours, contract.struct_id.maximum_working_hours)                    
+wage_rate = (payslip.working_hours/contract.struct_id.maximum_working_hours)
+result = wage_rate *  8500000          
+            </field>
+    </record>
+
+    <record id="hr_rule_transportation_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Transportation Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">transportation_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.NOINOT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">fix</field>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+
+    <record id="hr_rule_child_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Child Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">child_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.NOIT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">fix</field>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+    <record id="hr_rule_car_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Car Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">car_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.NOIT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">fix</field>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+
+
+    <record id="hr_rule_gas_Consultancy-NI-NOT-H-90" model="hr.salary.rule">
+        <field name="name">Gas Allowance</field>
+        <field name="sequence" eval="200"/>
+        <field name="code">gas_Consultancy-NI-NOT-H-90</field>
+        <!-- <field name="struct_id" ref="bi_hr_payroll.Consultancy-NI-NOT-H-90"/> -->
+        <field name="category_id" ref="bi_hr_payroll.IT-ALW"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">fix</field>
+        <field name="register_id" ref="contrib_register_employees"/>
+    </record>
+
+
+    
+
+    <!-- Decimal Precision -->
+    <record forcecreate="True" id="decimal_payroll" model="decimal.precision">
+        <field name="name">Payroll</field>
+        <field name="digits">2</field>
+    </record>
+
+    <record forcecreate="True" id="decimal_payroll_rate" model="decimal.precision">
+        <field name="name">Payroll Rate</field>
+        <field name="digits">4</field>
+    </record>
+
+</odoo>

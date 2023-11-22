@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menus -->
+
+    <menuitem id="menu_hr_payroll_root" name="Payroll" sequence="45"
+              web_icon="bi_hr_payroll,static/description/icon.png"/>
+    <menuitem id="menu_hr_payroll_configuration" name="Configuration" parent="menu_hr_payroll_root"
+              sequence="100" groups="bi_hr_payroll.group_hr_payroll_manager"/>
+
+    <!-- Contract View -->
+    <record id="hr_contract_form_inherit" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.inherit</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="struct_id" required="1"/>
+            </xpath>
+            <xpath expr="//field[@name='job_id']" position="before">
+                <field name="company_id"/>
+                <field name="currency_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='resource_calendar_id']" position="after">
+                <field name="schedule_pay"/>
+
+            </xpath>
+
+            <xpath expr="//group[@name='salary_info']" position="inside">
+                <separator string="Wage Information"/>
+                <div class="oe_title">
+                    <label for="mission_extra_wage" class="oe_edit_only"/>
+                    <field name="mission_extra_wage" class="oe_inline o_hr_narrow_field"/>
+                </div>
+                <div class="oe_title">
+                    <label for="uninsured_wage" class="oe_edit_only"/>
+                    <field name="uninsured_wage" class="oe_inline o_hr_narrow_field"/>
+                </div>
+                <div class="oe_title">
+                    <label for="job_allowance" class="oe_edit_only"/>
+                    <field name="job_allowance" class="oe_inline o_hr_narrow_field"/>
+                </div>
+                <div class="oe_title">
+                    <label for="management_bonus" class="oe_edit_only"/>
+                    <field name="management_bonus" class="oe_inline o_hr_narrow_field"/>
+                </div>
+                <div class="oe_title">
+                    <label for="project_management_bonus" class="oe_edit_only"/>
+                    <field name="project_management_bonus" class="oe_inline o_hr_narrow_field"/>
+                </div>
+
+                <separator string="Shift Information"/>
+                <div class="oe_title">
+                    <label for="shift_allowance" class="oe_edit_only"/>
+                    <field name="shift_allowance" required="1"/>
+                </div>
+                <div class="oe_title">
+                    <label for="shift_allowance_rate" class="oe_edit_only"/>
+                    <field name="shift_allowance_rate"/>
+                </div>
+                <div class="oe_title">
+                    <label for="on_call" class="oe_edit_only"/>
+                    <field name="on_call" required="1"/>
+                </div>
+
+                <separator string="Other Information"/>
+                <div class="oe_title">
+                    <label for="have_eidi" class="oe_edit_only"/>
+                    <field name="have_eidi"/>
+                </div>
+                <div class="oe_title">
+                    <label for="have_years_of_service" class="oe_edit_only"/>
+                    <field name="have_years_of_service"/>
+                </div>
+                <separator string="Family Information"/>
+                <div class="oe_title">
+                    <label for="child_allowance" class="oe_edit_only"/>
+                    <field name="child_allowance"/>
+                </div>
+            </xpath>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+
+        </field>
+
+
+    </record>
+
+    <record id="hr_contract_advantage_template_view_form" model="ir.ui.view">
+        <field name="name">hr.contract.advantage.template.form</field>
+        <field name="model">hr.contract.advantage.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Advantage Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="default_value"/>
+                            <field name="lower_bound"/>
+                            <field name="upper_bound"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_contract_advantage_template_view_tree" model="ir.ui.view">
+        <field name="name">hr.contract.advantage.template.tree</field>
+        <field name="model">hr.contract.advantage.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="lower_bound"/>
+                <field name="upper_bound"/>
+                <field name="default_value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_contract_advantage_template_action" model="ir.actions.act_window">
+        <field name="name">Contract Advantage Templates</field>
+        <field name="res_model">hr.contract.advantage.template</field>
+        <field name="binding_view_types">form</field>
+    </record>
+
+    <menuitem
+            id="hr_contract_advantage_template_menu_action"
+            action="hr_contract_advantage_template_action"
+            parent="menu_hr_payroll_configuration"
+            sequence="50"/>
+</odoo>

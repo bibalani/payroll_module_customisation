@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_tax_profile_view_form">
+        <field name="name">hr.tax.profile.view.form</field>
+        <field name="model">hr.tax.profile</field>
+        <field name="arch" type="xml">
+            <form string="Tax Profile">
+                <group>
+                    <field name="name"/>
+                    <field name="individual"/>
+                    <field name="step_ids">
+                        <tree string="Steps" editable="top">
+                            <field name="low"/>
+                            <field name="high" help="-1 means to the end"/>
+                            <field name="rate"/>
+                        </tree>
+                    </field>
+                </group>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_tax_profile_view_tree">
+        <field name="name">hr.tax.profile.view.tree</field>
+        <field name="model">hr.tax.profile</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Profile">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+
+    <record id="bi_hr_payroll.hr_tax_profile_view" model="ir.actions.act_window">
+        <field name="name">Tax Profile</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.tax.profile</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="hr_tax_profile_view_tree"/>
+        <field eval="[(6,0,[ref('base.group_system')])]" name="groups_id"/>
+    </record>
+
+    <menuitem id="hr_tax_profile_menu" action="bi_hr_payroll.hr_tax_profile_view" name="Tax Profile"
+              parent="menu_hr_payroll_configuration"
+              groups="base.group_system"/>
+
+
+</odoo>

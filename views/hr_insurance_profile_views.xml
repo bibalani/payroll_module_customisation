@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- View of Insurance Profile -->
+    <record model="ir.ui.view" id="hr_insurance_profile_view_tree">
+        <field name="name">hr.insurance.profile.view.tree</field>
+        <field name="model">hr.insurance.profile</field>
+
+        <field name="arch" type="xml">
+            <tree string="Insurance Profile">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="hr_insurance_profile_view_form">
+        <field name="name">hr.insurance.profile.view.form</field>
+        <field name="model">hr.insurance.profile</field>
+
+        <field name="arch" type="xml">
+            <form string="Insurance Profile">
+                <group>
+                    <field name="name"/>
+                    <field name="max_insurable_gross"/>
+                    <field name="employee_rate"/>
+                    <field name="employer_rate"/>
+                    <field name="unemployment_rate"/>
+                    <field name="low_limit"/>
+                    <field name="max_limit"/>
+                </group>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+
+    </record>
+
+
+    <record id="bi_hr_payroll.hr_insurance_profile_action" model="ir.actions.act_window">
+        <field name="name">Insurance Profile</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.insurance.profile</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="hr_insurance_profile_view_tree"/>
+        <field eval="[(6,0,[ref('base.group_system')])]" name="groups_id"/>
+    </record>
+
+    <menuitem id="hr_insurance_profile_menu" action="bi_hr_payroll.hr_insurance_profile_action" name="Insurance Profile"
+              parent="menu_hr_payroll_configuration"
+              groups="base.group_system"/>
+
+</odoo>

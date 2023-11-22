@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_payslip_input_form" model="ir.ui.view">
+        <field name="name">hr.payslip.input.form</field>
+        <field name="model">hr.payslip.input</field>
+        <field name="arch" type="xml">
+            <form string="Payslip">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="employee_id"/>
+                            <field name="category_id"/>
+                            <field name="pay_period_id"/>
+
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="is_grossable"/>
+                            <field name="sequence" invisible="True"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_payslip_input_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.input.tree</field>
+        <field name="model">hr.payslip.input</field>
+        <field name="arch" type="xml">
+            <tree string="Payslip Inputs">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="employee_id"/>
+                <field name="category_id"/>
+                <field name="pay_period_id"/>
+                <field name="amount"/>
+                <!--                <field name="contract_id"/>-->
+                <field name="sequence" invisible="True"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_view_hr_payslip_input" model="ir.actions.act_window">
+        <field name="name">Employee Payslip Inputs</field>
+        <field name="res_model">hr.payslip.input</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="action_view_hr_payslip_input" id="menu_payslip_input" parent="menu_hr_payroll_configuration"
+              name="Payslip Inputs" groups="bi_hr_payroll.group_hr_payroll_user"/>
+</odoo>
